@@ -35,6 +35,11 @@ gem "thruster", require: false
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin Ajax possible
 # gem "rack-cors"
 
+
+
+gem 'bcrypt'
+gem 'jwt'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
@@ -44,4 +49,16 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+
+  # Create tests for models, controllers, routes, views, helpers, jobs, etc.
+  gem 'rspec-rails', '~> 6.0'
+
+  # It allows you to build consistent and dynamic data without repeating code.
+  gem 'factory_bot_rails'
+
+  # generate false and random data such as emails, names, addresses, etc.
+  gem 'faker'
+
+  # reads .env file and loads those variables into the environment when the app starts.
+  gem 'dotenv-rails'
 end
