@@ -1,5 +1,6 @@
 require 'jwt'
 class ApplicationController < ActionController::API
+    include Pundit::Authorization
     before_action :authorize_request
 
     SECRET_KEY = ENV['SECRET_KEY_BASE'] || Rails.application.secrets.secret_key_base.to_s

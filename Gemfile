@@ -62,3 +62,5 @@ group :development, :test do
   # reads .env file and loads those variables into the environment when the app starts.
   gem 'dotenv-rails'
 end
+
+gem "pundit", "~> 2.5"

@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :purchase do
-    client { nil }
-    product { nil }
+    association :product
+    association :client
     quantity { 1 }
     total_price { "9.99" }
   end
