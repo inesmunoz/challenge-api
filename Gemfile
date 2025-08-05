@@ -36,9 +36,10 @@ gem "thruster", require: false
 # gem "rack-cors"
 
 
-
 gem 'bcrypt'
 gem 'jwt'
+gem "pundit", "~> 2.5"
+gem "paper_trail", "~> 16.0"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -63,4 +64,3 @@ group :development, :test do
   gem 'dotenv-rails'
 end
 
-gem "pundit", "~> 2.5"

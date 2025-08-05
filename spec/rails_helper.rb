@@ -48,6 +48,12 @@ RSpec.configure do |config|
   # instead of true.
   config.use_transactional_fixtures = true
 
+  config.around(:each) do |example|
+    PaperTrail.request(enabled: true, whodunnit: "RSpec User") do
+      example.run
+    end
+  end
+
   # You can uncomment this line to turn off ActiveRecord support entirely.
   # config.use_active_record = false
 

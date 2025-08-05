@@ -12,4 +12,16 @@ RSpec.describe Category, type: :model do
     category.name = nil
     expect(category).not_to be_valid
   end
+
+    it "creates a version on update with changeset" do
+    category = create(:category)
+    name_before_last_save = category.name
+    category.update!(name: "Updated Name")
+
+    expect(category.versions.count).to eq(2)
+
+    version = category.versions.last
+
+    expect(version.event).to eq("update")
+  end
 end

@@ -1,5 +1,7 @@
 class Product < ApplicationRecord
     include Filterable
+    has_paper_trail
+
     #
     ## RELATIONS
     #
