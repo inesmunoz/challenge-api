@@ -1,0 +1,12 @@
+<h1>Reporte de Compras del <%= @date.strftime('%d/%m/%Y') %></h1>
+
+<% @report_data.each do |product, purchases| %>
+  <h2><%= product.name %> - Total: <%= purchases.sum(&:quantity) %></h2>
+  <ul>
+    <% purchases.each do |purchase| %>
+      <li>
+        Cliente: <%= purchase.client.name %> - Cantidad: <%= purchase.quantity %> - Hora: <%= purchase.created_at.strftime("%H:%M") %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

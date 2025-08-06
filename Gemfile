@@ -40,7 +40,9 @@ gem 'bcrypt'
 gem 'jwt'
 gem "pundit", "~> 2.5"
 gem "paper_trail", "~> 16.0"
-
+gem 'sidekiq'
+gem 'sidekiq-cron'
+gem 'prawn'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
