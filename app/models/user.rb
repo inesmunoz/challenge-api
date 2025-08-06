@@ -15,6 +15,11 @@ class User < ApplicationRecord
     #
     validates :email, presence: true, uniqueness: true
 
+    #
+    ## FILTERS
+    #
+    scope :admins, -> { where(role: 'admin') }
+
     # Helper to verify the role
     def has_role?(role_name)
         role&.name == role_name.to_s

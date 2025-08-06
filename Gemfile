@@ -41,6 +41,7 @@ gem 'jwt'
 gem "pundit", "~> 2.5"
 gem "paper_trail", "~> 16.0"
 
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
@@ -62,5 +63,7 @@ group :development, :test do
 
   # reads .env file and loads those variables into the environment when the app starts.
   gem 'dotenv-rails'
+
+  gem 'letter_opener'
 end
 

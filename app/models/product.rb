@@ -31,4 +31,11 @@ class Product < ApplicationRecord
     }
 
     scope :with_name, ->(value) { where(name: value) }
+
+    def creator
+     @creator ||= begin
+        user_id = versions.where(event: "create").limit(1).pluck(:whodunnit).first
+        User.find_by(id: user_id)
+        end
+    end
 end

@@ -54,6 +54,9 @@ RSpec.configure do |config|
     end
   end
 
+  config.before(:each) do
+    ActionMailer::Base.deliveries.clear
+  end
   # You can uncomment this line to turn off ActiveRecord support entirely.
   # config.use_active_record = false
 
