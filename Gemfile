@@ -86,9 +86,14 @@ group :development, :test do
 
   # Exposes the generated documentation in OpenAPI/Swagger (YAML) format.
   gem 'rswag-api'
+  
   # Mount the Swagger UI interface at /api-docs.
   gem 'rswag-ui'
+
   #	Allows you to write RSpec-style specs that automatically generate Swagger documentation.
   gem 'rswag-specs'
+
+  #  generates a diagram based on your models and their relationships
+  gem 'rails-erd'
 end
 
