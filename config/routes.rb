@@ -17,6 +17,13 @@ Rails.application.routes.draw do
   resources :clients
   resources :purchases
 
+
+  get :top_earning_products, to: 'analytics#top_earning_products'
+  get :top_revenue_products_by_category, to: 'analytics#top_revenue_products_by_category'
+  get :purchases, to: 'analytics#purchases'
+  get :purchases_by_granularity, to: 'analytics#purchases_by_granularity'
+
+  
   # Defines the root path route ("/")
   # root "posts#index"
 end

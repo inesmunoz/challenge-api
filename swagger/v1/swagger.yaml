@@ -12,6 +12,167 @@ components:
 security:
 - bearerAuth: []
 paths:
+  "/top_earning_products":
+    get:
+      summary: Get most purchased products per category
+      tags:
+      - Analytics
+      security:
+      - Bearer: []
+      parameters:
+      - name: Authorization
+        in: header
+        required: true
+        description: Bearer token
+        schema:
+          type: string
+      responses:
+        '200':
+          description: products returned
+        '401':
+          description: unauthorized
+  "/top_revenue_products_by_category":
+    get:
+      summary: Get top 3 products by revenue per category
+      tags:
+      - Analytics
+      security:
+      - Bearer: []
+      parameters:
+      - name: Authorization
+        in: header
+        required: true
+        description: Bearer token
+        schema:
+          type: string
+      responses:
+        '200':
+          description: top products returned
+        '401':
+          description: unauthorized
+  "/purchases":
+    get:
+      summary: List all purchases
+      tags:
+      - Purchases
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: Authorization
+        in: header
+        required: true
+        description: Bearer token
+        schema:
+          type: string
+      - name: from
+        in: query
+        format: date_time
+        schema:
+          type: string
+      - name: to
+        in: query
+        format: date_time
+        schema:
+          type: string
+      - name: category_id
+        in: query
+        schema:
+          type: integer
+      - name: client_id
+        in: query
+        schema:
+          type: integer
+      - name: admin_id
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: purchases listed
+        '401':
+          description: unauthorized
+    post:
+      summary: Create a purchase
+      tags:
+      - Purchases
+      security:
+      - bearerAuth: []
+      parameters: []
+      responses:
+        '201':
+          description: purchase created
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                client_id:
+                  type: integer
+                product_id:
+                  type: integer
+                quantity:
+                  type: integer
+              required:
+              - client_id
+              - product_id
+              - quantity
+  "/purchases_by_granularity":
+    get:
+      summary: Get purchase count by granularity
+      tags:
+      - Analytics
+      security:
+      - Bearer: []
+      parameters:
+      - name: Authorization
+        in: header
+        required: true
+        description: Bearer token
+        schema:
+          type: string
+      - name: granularity
+        in: query
+        enum:
+        - hour
+        - day
+        - week
+        - year
+        required: true
+        schema:
+          type: string
+        description: ":\n * `hour` \n * `day` \n * `week` \n * `year` \n "
+      - name: from
+        in: query
+        format: date_time
+        schema:
+          type: string
+      - name: to
+        in: query
+        format: date_time
+        schema:
+          type: string
+      - name: category_id
+        in: query
+        schema:
+          type: integer
+      - name: client_id
+        in: query
+        schema:
+          type: integer
+      - name: admin_id
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: data returned
+        '400':
+          description: invalid granularity
+        '401':
+          description: unauthorized
   "/login":
     post:
       summary: Login user and returns JWT token
@@ -173,44 +334,6 @@ paths:
           description: producto encontrado
         '404':
           description: producto no encontrado
-  "/purchases":
-    get:
-      summary: List all purchases
-      tags:
-      - Purchases
-      security:
-      - bearerAuth: []
-      responses:
-        '200':
-          description: purchases listed
-    post:
-      summary: Create a purchase
-      tags:
-      - Purchases
-      security:
-      - bearerAuth: []
-      parameters: []
-      responses:
-        '201':
-          description: purchase created
-        '422':
-          description: invalid request
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                client_id:
-                  type: integer
-                product_id:
-                  type: integer
-                quantity:
-                  type: integer
-              required:
-              - client_id
-              - product_id
-              - quantity
   "/purchases/{id}":
     parameters:
     - name: id

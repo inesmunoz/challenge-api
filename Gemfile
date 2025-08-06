@@ -35,14 +35,29 @@ gem "thruster", require: false
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin Ajax possible
 # gem "rack-cors"
 
-
+# Secure password authentication.
 gem 'bcrypt'
+
+# Authentication using JWT (JSON Web Token) tokens.
 gem 'jwt'
+
+#  Autorización basada en políticas.
 gem "pundit", "~> 2.5"
+
+# Versionado de modelos.
 gem "paper_trail", "~> 16.0"
+
+# Background job processing.
 gem 'sidekiq'
+
+# Run recurring tasks according to a cron schedule.
 gem 'sidekiq-cron'
+
+# Generating PDF files from Ruby.
 gem 'prawn'
+
+# Grouping data by time granularity (hour, day, week, etc.).
+gem 'groupdate'
 
 
 group :development, :test do

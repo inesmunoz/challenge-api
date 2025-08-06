@@ -33,6 +33,6 @@ class ApplicationController < ActionController::API
     end
 
     def authorize_admin
-        render json: { error: "Solo admin" }, status: :forbidden unless current_user&.has_role?(:admin)
+        render json: { error: "Solo admin" }, status: :forbidden unless current_user&.has_role?(:administrador)
     end
 end
