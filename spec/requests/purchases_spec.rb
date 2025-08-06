@@ -7,14 +7,8 @@ RSpec.describe "Purchases API", type: :request do
   let(:valid_attributes) { attributes_for(:purchase).merge(client_id: client.id, product_id: product.id) }
 
   let(:user) { create(:user) }
-  let(:token) { generate_token(user) }
-
-  let(:headers) do
-    {
-      "Authorization" => "Bearer #{token}",
-      "Content-Type" => "application/json"
-    }
-  end
+  let(:authorization) { "Bearer #{generate_token(create(:user))}" }
+  let(:headers) { { "Authorization" => authorization, "Content-Type" => "application/json" } }
 
   describe "GET /purchases" do
     it "returns all purchases" do

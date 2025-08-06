@@ -38,8 +38,7 @@ RSpec.configure do |config|
     Rails.root.join('spec/fixtures')
   ]
 
-  config.include AuthHelper, type: :request
-
+  config.include AuthHelper
 
   ## ADD FactoryBoot
   config.include FactoryBot::Syntax::Methods
@@ -47,6 +46,7 @@ RSpec.configure do |config|
   # examples within a transaction, remove the following line or assign false
   # instead of true.
   config.use_transactional_fixtures = true
+
 
   config.around(:each) do |example|
     PaperTrail.request(enabled: true, whodunnit: "RSpec User") do

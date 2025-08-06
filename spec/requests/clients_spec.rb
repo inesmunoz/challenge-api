@@ -3,16 +3,9 @@ require 'rails_helper'
 RSpec.describe "Clients API", type: :request do
   let!(:client) { create(:client) }
   let(:user) { create(:user) }
-  let(:token) { generate_token(user) } # Usa tu método para generar JWT
-
   let(:valid_attributes) { attributes_for(:client) }
-
-  let(:headers) do
-    {
-      "Authorization" => "Bearer #{token}",
-      "Content-Type" => "application/json"
-    }
-  end
+  let(:authorization) { "Bearer #{generate_token(create(:user))}" }
+  let(:headers) { { "Authorization" => authorization, "Content-Type" => "application/json" } }
 
   describe "GET /clients" do
     it "returns all clients" do

@@ -19,7 +19,12 @@ class ProductsController < ApplicationController
   # POST /products
   def create
     product = ProductService::Create.new(product_params).call
-    render json: product, status: :created
+
+    if product.valid?
+      render json: product, status: :created
+    else
+      render json: { errors: product.errors.full_messages }, status: :unprocessable_entity
+    end
   rescue => e
     render json: { error: e.message }, status: :unprocessable_entity
   end

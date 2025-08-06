@@ -3,11 +3,19 @@ require 'rails_helper'
 RSpec.describe "Categories API", type: :request do
   let!(:category) { create(:category) }
   let(:valid_attributes) { attributes_for(:category) }
-  let(:user) { create(:user) }
+   let!(:role) { Role.find_or_create_by!(name: "administrador") }
+  let!(:user) do
+    User.find_by(email: "test@example.com") ||
+      User.create!(
+        email: "test@example.com",
+        password: "123456",
+        role: role
+      )
+  end  
   let!(:categories) { create_list(:category, 3) }
   let(:authorization) { "Bearer #{generate_token(create(:user))}" }
   let(:headers) { { "Authorization" => authorization, "Content-Type" => "application/json" } }
-  
+
   describe "GET /categories" do
     it "returns all categories" do
       get "/categories", headers: headers  

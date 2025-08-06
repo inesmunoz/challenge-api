@@ -44,6 +44,7 @@ gem 'sidekiq'
 gem 'sidekiq-cron'
 gem 'prawn'
 
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
@@ -67,5 +68,12 @@ group :development, :test do
   gem 'dotenv-rails'
 
   gem 'letter_opener'
+
+  # Exposes the generated documentation in OpenAPI/Swagger (YAML) format.
+  gem 'rswag-api'
+  # Mount the Swagger UI interface at /api-docs.
+  gem 'rswag-ui'
+  #	Allows you to write RSpec-style specs that automatically generate Swagger documentation.
+  gem 'rswag-specs'
 end
 
