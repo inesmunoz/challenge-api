@@ -15,7 +15,7 @@ RSpec.describe PurchaseMailer, type: :mailer do
 
     it 'renders the headers' do
       expect(mail.subject).to eq("Primera compra del producto #{product.name}")
-      expect(mail.to).to eq([creator.email])
+      expect(mail.to).to eq([ creator.email ])
     end
 
     it 'renders the body' do

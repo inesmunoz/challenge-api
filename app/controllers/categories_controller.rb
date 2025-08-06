@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
   before_action :authorize_request
-  before_action :set_category, only: [:destroy]
+  before_action :set_category, only: [ :destroy ]
 
   # GET /categories
   def index
@@ -45,7 +45,7 @@ class CategoriesController < ApplicationController
   def set_category
     @category = Category.find(params[:id])
   end
-  
+
   def filter_params
       params.permit(:name)
   end

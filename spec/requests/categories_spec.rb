@@ -7,12 +7,12 @@ RSpec.describe "Categories API", type: :request do
   let!(:categories) { create_list(:category, 3) }
   let(:authorization) { "Bearer #{generate_token(create(:user))}" }
   let(:headers) { { "Authorization" => authorization, "Content-Type" => "application/json" } }
-  
+
   describe "GET /categories" do
     it "returns all categories" do
-      get "/categories", headers: headers  
+      get "/categories", headers: headers
       expect(response).to have_http_status(:ok)
-      json = JSON.parse(response.body) 
+      json = JSON.parse(response.body)
       expect(json).not_to be_empty
     end
   end
@@ -28,7 +28,7 @@ RSpec.describe "Categories API", type: :request do
 
   describe "POST /categories" do
     it "creates a new category" do
-      post "/categories", params: valid_attributes.to_json, headers: headers 
+      post "/categories", params: valid_attributes.to_json, headers: headers
       expect(response).to have_http_status(:created)
       json = JSON.parse(response.body)
       expect(json["name"]).to eq(valid_attributes[:name])

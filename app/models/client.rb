@@ -4,7 +4,7 @@ class Client < ApplicationRecord
     ## RELATIONS
     #
     has_many :purchases
-       #
+    #
     ## VALIDATIONS
     #
     validates :name, presence: true

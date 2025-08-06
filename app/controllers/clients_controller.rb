@@ -1,6 +1,6 @@
 class ClientsController < ApplicationController
 before_action :authorize_request
-  before_action :set_client, only: [:destroy]
+  before_action :set_client, only: [ :destroy ]
 
   # GET /clients
   def index
@@ -8,7 +8,7 @@ before_action :authorize_request
     render json: clients
   end
 
-   # GET /clients/:id
+  # GET /clients/:id
   def show
     client = ClientService::Show.new(params[:id]).call
     render json: client

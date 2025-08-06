@@ -9,7 +9,7 @@ RSpec.describe 'Clients API', type: :request do
         password: "123456",
         role: role
       )
-  end  
+  end
   path '/clients' do
     get 'List all clients' do
       tags 'Clients'

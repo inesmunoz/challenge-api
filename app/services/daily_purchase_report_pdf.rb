@@ -1,4 +1,4 @@
-require 'prawn'
+require "prawn"
 
 class DailyPurchaseReportPdf
   def initialize(report_data, date)

@@ -36,10 +36,10 @@ gem "thruster", require: false
 # gem "rack-cors"
 
 # Secure password authentication.
-gem 'bcrypt'
+gem "bcrypt"
 
 # Authentication using JWT (JSON Web Token) tokens.
-gem 'jwt'
+gem "jwt"
 
 #  Autorización basada en políticas.
 gem "pundit", "~> 2.5"
@@ -48,16 +48,16 @@ gem "pundit", "~> 2.5"
 gem "paper_trail", "~> 16.0"
 
 # Background job processing.
-gem 'sidekiq'
+gem "sidekiq"
 
 # Run recurring tasks according to a cron schedule.
-gem 'sidekiq-cron'
+gem "sidekiq-cron"
 
 # Generating PDF files from Ruby.
-gem 'prawn'
+gem "prawn"
 
 # Grouping data by time granularity (hour, day, week, etc.).
-gem 'groupdate'
+gem "groupdate"
 
 
 group :development, :test do
@@ -71,29 +71,28 @@ group :development, :test do
   gem "rubocop-rails-omakase", require: false
 
   # Create tests for models, controllers, routes, views, helpers, jobs, etc.
-  gem 'rspec-rails', '~> 6.0'
+  gem "rspec-rails", "~> 6.0"
 
   # It allows you to build consistent and dynamic data without repeating code.
-  gem 'factory_bot_rails'
+  gem "factory_bot_rails"
 
   # generate false and random data such as emails, names, addresses, etc.
-  gem 'faker'
+  gem "faker"
 
   # reads .env file and loads those variables into the environment when the app starts.
-  gem 'dotenv-rails'
+  gem "dotenv-rails"
 
-  gem 'letter_opener'
+  gem "letter_opener"
 
   # Exposes the generated documentation in OpenAPI/Swagger (YAML) format.
-  gem 'rswag-api'
-  
+  gem "rswag-api"
+
   # Mount the Swagger UI interface at /api-docs.
-  gem 'rswag-ui'
+  gem "rswag-ui"
 
   #	Allows you to write RSpec-style specs that automatically generate Swagger documentation.
-  gem 'rswag-specs'
+  gem "rswag-specs"
 
   #  generates a diagram based on your models and their relationships
-  gem 'rails-erd'
+  gem "rails-erd"
 end
-

@@ -1,6 +1,6 @@
 class PurchasesController < ApplicationController
   before_action :authorize_request
-  before_action :set_purchase, only: [:destroy]
+  before_action :set_purchase, only: [ :destroy ]
 
   # GET /purchases
   def index

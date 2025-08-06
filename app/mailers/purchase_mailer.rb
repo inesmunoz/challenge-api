@@ -2,7 +2,7 @@ class PurchaseMailer < ApplicationMailer
     def purchase_email(purchase)
         @purchase = purchase
         @product = purchase.product
-        @creator = @product.creator 
+        @creator = @product.creator
 
         admins = User.admins.where.not(id: @creator.id)
 

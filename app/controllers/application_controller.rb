@@ -1,10 +1,10 @@
-require 'jwt'
+require "jwt"
 class ApplicationController < ActionController::API
     include Pundit::Authorization
     before_action :authorize_request
     before_action :set_paper_trail_whodunnit
 
-    SECRET_KEY = ENV['SECRET_KEY_BASE'] || Rails.application.secrets.secret_key_base.to_s
+    SECRET_KEY = ENV["SECRET_KEY_BASE"] || Rails.application.secrets.secret_key_base.to_s
 
     def encode_jwt(payload, exp = 24.hours.from_now)
         payload[:exp] = exp.to_i
@@ -20,8 +20,8 @@ class ApplicationController < ActionController::API
     end
 
     def current_user
-        header = request.headers['Authorization']
-        token = header.split(' ').last if header
+        header = request.headers["Authorization"]
+        token = header.split(" ").last if header
         decoded = decode_jwt(token)
         if decoded
             @current_user ||= User.find_by(id: decoded[:user_id])

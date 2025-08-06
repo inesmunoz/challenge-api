@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe "Products API", type: :request do
   let!(:category) { create(:category) }
-  let!(:product) { create(:product, categories: [category]) }
-  let(:valid_attributes) { attributes_for(:product).merge(category_ids: [category.id]) }
+  let!(:product) { create(:product, categories: [ category ]) }
+  let(:valid_attributes) { attributes_for(:product).merge(category_ids: [ category.id ]) }
 
   let(:user) { create(:user) }
   let(:authorization) { "Bearer #{generate_token(create(:user))}" }

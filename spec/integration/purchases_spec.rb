@@ -9,7 +9,7 @@ RSpec.describe 'Purchases API', type: :request do
         password: "123456",
         role: role
       )
-  end  
+  end
   path '/purchases' do
     get 'List all purchases' do
       tags 'Purchases'

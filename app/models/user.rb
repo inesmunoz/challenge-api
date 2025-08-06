@@ -18,7 +18,7 @@ class User < ApplicationRecord
     #
     ## FILTERS
     #
-    scope :admins, -> {  joins(:role).where(roles: { name: 'administrador' }) }
+    scope :admins, -> {  joins(:role).where(roles: { name: "administrador" }) }
 
     # Helper to verify the role
     def has_role?(role_name)

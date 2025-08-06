@@ -6,8 +6,8 @@
       data = Category.includes(products: :purchases).map do |category|
         top_product = category.products
                              .left_joins(:purchases)
-                             .group('products.id')
-                             .order('COUNT(purchases.id) DESC')
+                             .group("products.id")
+                             .order("COUNT(purchases.id) DESC")
                              .first
 
         {
@@ -24,9 +24,9 @@
       data = Category.includes(products: :purchases).map do |category|
         top_products = category.products
                                .left_joins(:purchases)
-                               .group('products.id')
-                               .select('products.*, SUM(purchases.total_price) AS revenue')
-                               .order('revenue DESC')
+                               .group("products.id")
+                               .select("products.*, SUM(purchases.total_price) AS revenue")
+                               .order("revenue DESC")
                                .limit(3)
 
         {
@@ -67,9 +67,9 @@
 
     format =
       case granularity
-      when 'day'   then 'YYYY-MM-DD'
-      when 'month' then 'YYYY-MM'
-      when 'year'  then 'YYYY'
+      when "day"   then "YYYY-MM-DD"
+      when "month" then "YYYY-MM"
+      when "year"  then "YYYY"
       end
 
     purchases = Purchase.joins(product: :categories).where(created_at: from..to)

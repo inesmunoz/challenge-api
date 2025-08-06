@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   before_action :authorize_request
-  before_action :set_product, only: [:destroy]
+  before_action :set_product, only: [ :destroy ]
 
   # GET /products
   def index
@@ -8,7 +8,7 @@ class ProductsController < ApplicationController
     render json: products
   end
 
-   # GET /products/:id
+  # GET /products/:id
   def show
     product = ProductService::Show.new(params[:id]).call
     render json: product
@@ -58,5 +58,4 @@ class ProductsController < ApplicationController
   def product_params
       params.permit(:name, :price, :stock, :product_type, category_ids: [])
   end
-
 end

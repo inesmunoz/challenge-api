@@ -30,7 +30,7 @@ RSpec.describe 'Analytics API', type: :request do
   path '/top_earning_products' do
     get 'Get most purchased products per category' do
       tags 'Analytics'
-      security [Bearer: []]
+      security [ Bearer: [] ]
       produces 'application/json'
       parameter name: 'Authorization', in: :header, type: :string, required: true, description: 'Bearer token'
       response '200', 'products returned' do
@@ -48,7 +48,7 @@ RSpec.describe 'Analytics API', type: :request do
   path '/top_revenue_products_by_category' do
     get 'Get top 3 products by revenue per category' do
       tags 'Analytics'
-      security [Bearer: []]
+      security [ Bearer: [] ]
       produces 'application/json'
       parameter name: 'Authorization', in: :header, type: :string, required: true, description: 'Bearer token'
       response '200', 'top products returned' do
@@ -66,7 +66,7 @@ RSpec.describe 'Analytics API', type: :request do
   path '/purchases' do
     get 'Get purchases filtered by parameters' do
       tags 'Analytics'
-      security [Bearer: []]
+      security [ Bearer: [] ]
       produces 'application/json'
       parameter name: 'Authorization', in: :header, type: :string, required: true, description: 'Bearer token'
       parameter name: :from, in: :query, type: :string, format: :date_time
@@ -76,7 +76,7 @@ RSpec.describe 'Analytics API', type: :request do
       parameter name: :admin_id, in: :query, type: :integer
 
       response '200', 'purchases returned' do
-        let(:Authorization) { "Bearer #{generate_token(user)}" }    
+        let(:Authorization) { "Bearer #{generate_token(user)}" }
         run_test!
       end
 
@@ -90,7 +90,7 @@ RSpec.describe 'Analytics API', type: :request do
   path '/purchases_by_granularity' do
     get 'Get purchase count by granularity' do
       tags 'Analytics'
-      security [Bearer: []]
+      security [ Bearer: [] ]
       produces 'application/json'
       parameter name: 'Authorization', in: :header, type: :string, required: true, description: 'Bearer token'
       parameter name: :granularity, in: :query, type: :string, enum: %w[hour day week year], required: true

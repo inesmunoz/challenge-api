@@ -9,7 +9,7 @@ RSpec.describe 'Products API', type: :request do
         password: "123456",
         role: role
       )
-  end  
+  end
   path '/products' do
     get 'Lista todos los productos' do
       tags 'Products'
@@ -49,7 +49,7 @@ RSpec.describe 'Products API', type: :request do
           {
             name: 'New Product',
             price: 99.99,
-            category_ids: [category.id]
+            category_ids: [ category.id ]
           }
         end
 

@@ -38,5 +38,4 @@ RSpec.describe Product, type: :model do
 
     expect(version.event).to eq("update")
   end
-
 end
