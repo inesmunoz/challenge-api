@@ -12,10 +12,13 @@ module Filterable
           scope = scope.public_send(key, value)
 
         elsif key.to_s.match?(/_(from|to)\z/)
-          base_field = key.to_s.gsub(/_(from|to)\z/, "")
+          base_field = key.to_s.gsub(/_(from|to)\z/, "").underscore
+
           if column_names.include?(base_field)
             operator = key.to_s.ends_with?("_from") ? ">=" : "<="
             scope = scope.where("#{base_field} #{operator} ?", value)
+          else
+            Rails.logger.debug "Unknown base_field: #{base_field} for filter #{key}"
           end
 
         elsif value.is_a?(Array)
