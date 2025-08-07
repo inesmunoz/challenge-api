@@ -2,7 +2,7 @@
 
 API en RoR que agrupa funcionalidades de reporte sobre compras, productos y clientes asociados.
 
-*  Requisitos del sistema
+ #  Requisitos del sistema
 
      - Ruby 3.4.2
      - Rails ~> 8.0.2
@@ -10,18 +10,18 @@ API en RoR que agrupa funcionalidades de reporte sobre compras, productos y clie
      - Node.js >= 16 (para Rails 8)
 
 
-* Instalación
-    # Clonar el repositorio
+#  Instalación
+   *Clonar el repositorio
     git clone https://github.com/inesmunoz/challenge-api.git
     cd analytics-api
 
-    # Instalar dependencias
+   *Instalar dependencias
     bundle install
 
-    # Configurar base de datos
+   *Configurar base de datos
     rails db:setup
 
-*  Endpoints principales
+#  Endpoints principales
     La API expone los siguientes endpoints para administradores:
 
     | Método | Ruta                                     | Descripción                          |
@@ -32,21 +32,21 @@ API en RoR que agrupa funcionalidades de reporte sobre compras, productos y clie
     | GET    | `/api/v1/admin/purchases_by_granularity` | Cantidad de compras por granularidad |
 
 
-* Ejecutar pruebas
-    # Ejecutar todos los tests
+#  Ejecutar pruebas
+    *Ejecutar todos los tests
     bundle exec rspec
 
-    # Ver pruebas documentadas con RSwag (Swagger)
+    *Ver pruebas documentadas con RSwag (Swagger)
     bundle exec rake rswag
 
-*  Documentación Swagger
-    # Generar documentación
+#   Documentación Swagger
+    * Generar documentación
     rake rswag:specs:swaggerize
 
-    La ruta de acceso es:
+    * La ruta de acceso es:
     GET /api-docs/index.html
 
-* Funcionalidades principales
+#  Funcionalidades principales
     ✅ Autenticación con JWT (admin-only)
     ✅ Endpoints JSON
     ✅ Filtros dinámicos con Filterable
@@ -54,16 +54,16 @@ API en RoR que agrupa funcionalidades de reporte sobre compras, productos y clie
     ✅ Tests de integración y unidad con RSpec
     ✅  Documentación Swagger (RSwag)
     
-* Despliegue
-    Esta API se despliega en render https://render.com/
+# Despliegue
+    *Esta API se despliega en render https://render.com/
 
-*  Dependencias clave
-    jwt
-    rswag
-    rspec-rails
-    factory_bot_rails
-    database_cleaner-active_record
+# Dependencias clave
+   * jwt
+   * rswag
+   * rspec-rails
+   * factory_bot_rails
+   * database_cleaner-active_record
 
-*  Autor
-    Desarrollado por Inés Muñoz
+# Autor
+    * Desarrollado por Inés Muñoz
 
