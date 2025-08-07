@@ -8,14 +8,15 @@ module Filterable
 
       filters.each do |key, value|
         next if value.blank?
-        
         if respond_to?(key)
           scope = scope.public_send(key, value)
 
-        elsif key.to_s.match?(/_from|_to/)
+        elsif key.to_s.match?(/_(from|to)\z/)
           base_field = key.to_s.gsub(/_(from|to)\z/, "")
-          operator = key.to_s.ends_with?("_from") ? ">=" : "<="
-          scope = scope.where("#{base_field} #{operator} ?", value)
+          if column_names.include?(base_field)
+            operator = key.to_s.ends_with?("_from") ? ">=" : "<="
+            scope = scope.where("#{base_field} #{operator} ?", value)
+          end
 
         elsif value.is_a?(Array)
           scope = scope.where(key => value)
