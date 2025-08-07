@@ -21,6 +21,13 @@ API en RoR que agrupa funcionalidades de reporte sobre compras, productos y clie
    *Configurar base de datos
     rails db:setup
 
+# Database seeding
+
+    Para cargar datos iniciales en la base de datos, ejecuta el siguiente comando:
+
+    ```bash
+    bin/rails db:seed
+
 #  Endpoints principales
     La API expone los siguientes endpoints para administradores:
 
@@ -55,7 +62,7 @@ API en RoR que agrupa funcionalidades de reporte sobre compras, productos y clie
     ✅  Documentación Swagger (RSwag)
     
 # Despliegue
-    *Esta API se despliega en render https://render.com/
+    *Esta API se despliega en render https://render.com/ (en construcción)
 
 # Dependencias clave
    * jwt
