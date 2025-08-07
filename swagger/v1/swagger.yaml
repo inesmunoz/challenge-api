@@ -1,0 +1,386 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+security:
+- bearerAuth: []
+paths:
+  "/top_earning_products":
+    get:
+      summary: Get most purchased products per category
+      tags:
+      - Analytics
+      security:
+      - Bearer: []
+      parameters:
+      - name: Authorization
+        in: header
+        required: true
+        description: Bearer token
+        schema:
+          type: string
+      responses:
+        '200':
+          description: products returned
+        '401':
+          description: unauthorized
+  "/top_revenue_products_by_category":
+    get:
+      summary: Get top 3 products by revenue per category
+      tags:
+      - Analytics
+      security:
+      - Bearer: []
+      parameters:
+      - name: Authorization
+        in: header
+        required: true
+        description: Bearer token
+        schema:
+          type: string
+      responses:
+        '200':
+          description: top products returned
+        '401':
+          description: unauthorized
+  "/purchases":
+    get:
+      summary: List all purchases
+      tags:
+      - Purchases
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: Authorization
+        in: header
+        required: true
+        description: Bearer token
+        schema:
+          type: string
+      - name: from
+        in: query
+        format: date_time
+        schema:
+          type: string
+      - name: to
+        in: query
+        format: date_time
+        schema:
+          type: string
+      - name: category_id
+        in: query
+        schema:
+          type: integer
+      - name: client_id
+        in: query
+        schema:
+          type: integer
+      - name: admin_id
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: purchases listed
+        '401':
+          description: unauthorized
+    post:
+      summary: Create a purchase
+      tags:
+      - Purchases
+      security:
+      - bearerAuth: []
+      parameters: []
+      responses:
+        '201':
+          description: purchase created
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                client_id:
+                  type: integer
+                product_id:
+                  type: integer
+                quantity:
+                  type: integer
+              required:
+              - client_id
+              - product_id
+              - quantity
+  "/purchases_by_granularity":
+    get:
+      summary: Get purchase count by granularity
+      tags:
+      - Analytics
+      security:
+      - Bearer: []
+      parameters:
+      - name: Authorization
+        in: header
+        required: true
+        description: Bearer token
+        schema:
+          type: string
+      - name: granularity
+        in: query
+        enum:
+        - hour
+        - day
+        - week
+        - year
+        required: true
+        schema:
+          type: string
+        description: ":\n * `hour` \n * `day` \n * `week` \n * `year` \n "
+      - name: from
+        in: query
+        format: date_time
+        schema:
+          type: string
+      - name: to
+        in: query
+        format: date_time
+        schema:
+          type: string
+      - name: category_id
+        in: query
+        schema:
+          type: integer
+      - name: client_id
+        in: query
+        schema:
+          type: integer
+      - name: admin_id
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: data returned
+        '400':
+          description: invalid granularity
+        '401':
+          description: unauthorized
+  "/login":
+    post:
+      summary: Login user and returns JWT token
+      tags:
+      - Auth
+      parameters: []
+      responses:
+        '200':
+          description: valid credentials
+        '401':
+          description: invalid credentials
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+              required:
+              - "'email',"
+              - "'password'"
+  "/clients":
+    get:
+      summary: List all clients
+      tags:
+      - Clients
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: clients listed
+    post:
+      summary: Create a client
+      tags:
+      - Clients
+      security:
+      - bearerAuth: []
+      parameters: []
+      responses:
+        '201':
+          description: client created
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+              required:
+              - name
+              - email
+  "/clients/{id}":
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      summary: Retrieve a client
+      tags:
+      - Clients
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: client found
+        '404':
+          description: client not found
+    put:
+      summary: Update a client
+      tags:
+      - Clients
+      security:
+      - bearerAuth: []
+      parameters: []
+      responses:
+        '200':
+          description: client updated
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+    delete:
+      summary: Delete a client
+      tags:
+      - Clients
+      security:
+      - bearerAuth: []
+      responses:
+        '204':
+          description: client deleted
+  "/products":
+    get:
+      summary: Lista todos los productos
+      tags:
+      - Products
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: listado exitoso
+    post:
+      summary: Crea un producto
+      tags:
+      - Products
+      security:
+      - bearerAuth: []
+      parameters: []
+      responses:
+        '201':
+          description: producto creado
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                price:
+                  type: number
+                category_ids:
+                  type: array
+                  items:
+                    type: integer
+              required:
+              - "'name',"
+              - "'price'"
+  "/products/{id}":
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      summary: Muestra un producto
+      tags:
+      - Products
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: producto encontrado
+        '404':
+          description: producto no encontrado
+  "/purchases/{id}":
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      summary: Get a purchase
+      tags:
+      - Purchases
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: purchase found
+        '404':
+          description: purchase not found
+    put:
+      summary: Update a purchase
+      tags:
+      - Purchases
+      security:
+      - bearerAuth: []
+      parameters: []
+      responses:
+        '200':
+          description: purchase updated
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                quantity:
+                  type: integer
+    delete:
+      summary: Delete a purchase
+      tags:
+      - Purchases
+      security:
+      - bearerAuth: []
+      responses:
+        '204':
+          description: purchase deleted
+servers:
+- url: http://localhost:3000
+  variables:
+    defaultHost:
+      default: www.example.com

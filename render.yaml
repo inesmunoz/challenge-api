@@ -1,0 +1,18 @@
+databases:
+  - name: challenge_production
+    databaseName: challenge_production
+    user: challenge_production
+
+services:
+  - type: web
+    name: challenge-api
+    runtime: ruby
+    buildCommand: "./bin/render-build.sh"
+    startCommand: "bundle exec puma -C config/puma.rb"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: challenge_production
+          property: connectionString
+      - key: RAILS_MASTER_KEY
+        sync: false

@@ -35,6 +35,40 @@ gem "thruster", require: false
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin Ajax possible
 # gem "rack-cors"
 
+# Secure password authentication.
+gem "bcrypt"
+
+# Authentication using JWT (JSON Web Token) tokens.
+gem "jwt"
+
+#  Autorización basada en políticas.
+gem "pundit", "~> 2.5"
+
+# Versionado de modelos.
+gem "paper_trail", "~> 16.0"
+
+# Background job processing.
+gem "sidekiq"
+
+# Run recurring tasks according to a cron schedule.
+gem "sidekiq-cron"
+
+# Generating PDF files from Ruby.
+gem "prawn"
+
+# Grouping data by time granularity (hour, day, week, etc.).
+gem "groupdate"
+
+# Exposes the generated documentation in OpenAPI/Swagger (YAML) format.
+gem "rswag-api"
+
+# Mount the Swagger UI interface at /api-docs.
+gem "rswag-ui"
+
+#	Allows you to write RSpec-style specs that automatically generate Swagger documentation.
+gem "rswag-specs"
+
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
@@ -44,4 +78,21 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+
+  # Create tests for models, controllers, routes, views, helpers, jobs, etc.
+  gem "rspec-rails", "~> 6.0"
+
+  # It allows you to build consistent and dynamic data without repeating code.
+  gem "factory_bot_rails"
+
+  # generate false and random data such as emails, names, addresses, etc.
+  gem "faker"
+
+  # reads .env file and loads those variables into the environment when the app starts.
+  gem "dotenv-rails"
+
+  gem "letter_opener"
+
+  #  generates a diagram based on your models and their relationships
+  gem "rails-erd"
 end

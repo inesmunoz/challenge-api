@@ -2,8 +2,8 @@ default: &default
   adapter: postgresql
   encoding: unicode
   host: localhost
-  username: admin
-  password: 1107
+  username: <%= ENV['DATABASE_USERNAME'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
   pool: 5
 
 development:
@@ -16,4 +16,4 @@ test:
 
 production:
   <<: *default
-  database: challenge_production
+  url: <%= ENV['DATABASE_URL'] %>
