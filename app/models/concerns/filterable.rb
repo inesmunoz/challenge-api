@@ -19,6 +19,7 @@ module Filterable
             scope = scope.where("#{base_field} #{operator} ?", value)
           else
             Rails.logger.debug "Unknown base_field: #{base_field} for filter #{key}"
+            raise ArgumentError, "Unknown filter: #{key}"
           end
 
         elsif value.is_a?(Array)
