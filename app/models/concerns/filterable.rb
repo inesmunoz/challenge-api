@@ -1,8 +1,13 @@
 # app/models/concerns/filterable.rb
 module Filterable
   extend ActiveSupport::Concern
-
+  OPERATORS = { from: ">=", to: "<=" }
+  ALLOWED_FIXED_COLUMNS = %w[created_at update_at]
   class_methods do
+    def self.allowed_filter_columns
+      ALLOWED_FIXED_COLUMNS | (column_names - ALLOWED_FIXED_COLUMNS)
+    end
+
     def filtrate(filters = {})
       scope = all
 
@@ -14,8 +19,9 @@ module Filterable
         elsif key.to_s.match?(/_(from|to)\z/)
           base_field = key.to_s.gsub(/_(from|to)\z/, "").underscore
 
-          if column_names.include?(base_field)
-            operator = key.to_s.ends_with?("_from") ? ">=" : "<="
+          if allowed_filter_columns.include?(base_field)
+
+            operator = OPERATORS[key.to_s.split("_").last.to_sym]
             scope = scope.where("#{base_field} #{operator} ?", value)
           else
             Rails.logger.debug "Unknown base_field: #{base_field} for filter #{key}"
