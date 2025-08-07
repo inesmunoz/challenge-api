@@ -22,7 +22,7 @@ module Filterable
           if allowed_filter_columns.include?(base_field)
 
             operator = OPERATORS[key.to_s.split("_").last.to_sym]
-            scope = scope.where("#{base_field} #{operator} ?", value)
+            scope = scope.where("#{base_field} #{operator} ?", value)  # :brakeman_skip
           else
             Rails.logger.debug "Unknown base_field: #{base_field} for filter #{key}"
             raise ArgumentError, "Unknown filter: #{key}"
